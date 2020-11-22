@@ -26,7 +26,7 @@ echo ${VAR_2}
 
 Instead, you can use a [string template directive](https://www.terraform.io/docs/configuration/expressions.html#string-templates) in the template file, combined with a map input to the `templatefile()` function to DRY this out.
 
-To see this in action, review [main.tf](./main.tf), and see how it passes the `ENV_VARS = {}` map into the function. The `for` directive inside of [user-data.sh.tmpl](./user-data.sh.tmpl) unwraps that map, renders each line into an `export`, and the resulting script sets all of variables in the shell.
+To see this in action, review [main.tf](./main.tf#L4-L7), and see how it passes the `ENV_VARS = {}` map into the function. The `for` directive inside of [user-data.sh.tmpl](./user-data.sh.tmpl#L3-L5) unwraps that map, renders each line into an `export`, and the resulting script sets all of variables in the shell.
 
 ## Using This Example
 
