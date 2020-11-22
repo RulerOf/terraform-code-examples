@@ -1,0 +1,8 @@
+#!/bin/bash
+
+%{ for k, v in ENV_VARS ~}
+export ${k}="${v}"
+%{ endfor ~}
+
+# Do stuff
+echo "The rendered version of this template will declare all of the keys in ENV_VARS as variables."
