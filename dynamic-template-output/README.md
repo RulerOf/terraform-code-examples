@@ -33,7 +33,10 @@ To see this in action, review [main.tf](./main.tf), and see how it passes the `E
 To start, init and apply this terraform code:
 
 ```shell
-terraform init; terraform apply -auto-approve
+git clone https://github.com/RulerOf/terraform-code-examples.git
+cd terraform-code-examples/dynamic-template-output
+terraform init
+terraform apply -auto-approve
 ```
 
 Then observe the output:
