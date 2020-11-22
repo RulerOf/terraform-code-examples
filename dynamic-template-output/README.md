@@ -28,6 +28,50 @@ Instead, you can use a [string template directive](https://www.terraform.io/docs
 
 To see this in action, review [main.tf](./main.tf), and see how it passes the `ENV_VARS = {}` map into the function. The `for` directive inside of [user-data.sh.tmpl](./user-data.sh.tmpl) unwraps that map, renders each line into an `export`, and the resulting script sets all of variables in the shell.
 
+## Using This Example
+
+To start, init and apply this terraform code:
+
+```shell
+terraform init; terraform apply -auto-approve
+```
+
+Then observe the output:
+
+```
+23:22 $ terraform apply -auto-approve
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+rendered = #!/bin/bash
+
+export var1="test1"
+export var2="test2"
+
+# Do stuff
+echo "The rendered version of this template will declare all of the keys in ENV_VARS as variables."
+```
+
+Now, in [main.tf](./main.tf), you can add more inputs to the ENV_VARS map and re-apply to see this in action:
+```
+23:22 $ terraform apply -auto-approve
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+rendered = #!/bin/bash
+
+export var1="test1"
+export var2="test2"
+export var_new="This var was added to the map in the function input, but I did not modify the template file"
+
+# Do stuff
+echo "The rendered version of this template will declare all of the keys in ENV_VARS as variables."
+```
+
 ### Discussion
 
 Relates back to [this reddit thread](https://www.reddit.com/r/Terraform/comments/jy05en/terraform_variables_in_bash_scripting/gd0dfhv/)
